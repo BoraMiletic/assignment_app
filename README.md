@@ -1,39 +1,40 @@
-📘 # Bora Assignment API
+# 📘 Bora Assignment API
 
 A simple REST API built with Node.js, Express, PostgreSQL, and JWT Authentication, supporting user registration, login, and task management with role-based access.
 
-🚀 ## Features
+---
 
-- User registration with hashed passwords
+## 🚀 Features
 
-- JWT-based authentication
+- User registration with hashed passwords  
+- JWT-based authentication  
+- Login with email or username  
+- Role-based authorization (basic and admin)  
+- Basic users can create, view, and update only their own tasks  
+- Admins can view and update all tasks  
+- Swagger API documentation  
+- Postman collection for testing
 
-- Login with email or username
+---
 
-- Role-based authorization (basic and admin)
+## ⚙️ Setup Instructions
 
-- Basic users can create, view, and update only their own tasks
-
-- Admins can view and update all tasks
-
-- Swagger API documentation
-
-⚙️ ## Setup Instructions
-✔ 1. Clone the project
+### ✔ 1. Clone the project
+```bash
 git clone <your-repo-url>
 cd bora_assignment_app
+```
 
-✔ 2. Install dependencies
+### ✔ 2. Install dependencies
+```bash
 npm install
+```
 
-✔ 3. Set up environment variables
+### ✔ 3. Set up environment variables
 
-Copy .env.example and rename it to .env
+Copy `.env.example` and rename it to `.env`, then update with your values.
 
-Open .env and replace placeholders (<value>) with your local database credentials and JWT settings.
-
-Example:
-
+```env
 DB_USER=postgres
 DB_HOST=localhost
 DB_NAME=bora_assignment_app
@@ -44,11 +45,15 @@ JWT_SECRET=supersecretjwtkey
 JWT_EXPIRES_IN=1d
 
 PORT=5000
+```
 
-✔ 4. Create PostgreSQL database
+---
 
-Run the following SQL script in pgAdmin, DBeaver, or psql terminal:
+### ✔ 4. Create PostgreSQL database
 
+Use the following SQL script:
+
+```sql
 CREATE DATABASE bora_assignment_app;
 
 CREATE TABLE users (
@@ -68,75 +73,102 @@ CREATE TABLE tasks (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+```
 
-✔ 5. Run the project
+---
+
+### ✔ 5. Run the project
+```bash
 npm start
+```
 
+API will be available at:  
+👉 `http://localhost:5000`
 
-The API will be available at:
-👉 http://localhost:5000
+---
 
-📄 ## API Documentation (Swagger)
+## 📄 API Documentation (Swagger)
 
-Once the application is running, open your browser and navigate to:
+Once the application is running, open in browser:
 
-👉 http://localhost:5000/api-docs
+👉 `http://localhost:5000/api-docs`
 
-There you can test all endpoints directly, including authentication.
+💡 To access protected routes, login first, copy the token, click **Authorize** in Swagger, and enter:
 
-💡 To access protected routes (tasks), first login, get a JWT token, and click Authorize in Swagger.
-Enter it like this:
-
+```
 Bearer <your_token>
+```
 
-📡 ## API Routes Overview
-Method	Endpoint	Description	Auth Required
-POST	/api/auth/register	Register new user	❌ No
-POST	/api/auth/login	Login and get JWT token	❌ No
-POST	/api/tasks	Create new task (basic)	✔ Yes
-GET	/api/tasks	Get tasks (role-based)	✔ Yes
-PUT	/api/tasks/{id}	Update task by ID	✔ Yes
-🔑 Getting the JWT Token
+---
 
-Use /api/auth/login with:
+## 📬 Postman Collection
 
+You can also test all endpoints using Postman.  
+Import the file:
+
+```
+REST API.postman_collection.json
+```
+
+It contains predefined requests for registration, login, and task operations.
+
+For protected routes, go to **Authorization** tab and select:  
+**Type:** Bearer Token  
+**Token:** `<your_token>`
+
+---
+
+## 📡 API Routes Overview
+
+| Method | Endpoint           | Description              | Auth Required |
+|--------|--------------------|--------------------------|---------------|
+| POST   | /api/auth/register | Register new user        | ❌ No          |
+| POST   | /api/auth/login    | Login and get token      | ❌ No          |
+| POST   | /api/tasks         | Create new task          | ✔ Yes         |
+| GET    | /api/tasks         | Get tasks (role-based)   | ✔ Yes         |
+| PUT    | /api/tasks/{id}    | Update task by ID        | ✔ Yes         |
+
+---
+
+### 🔑 Getting the JWT Token
+
+Request example for `/api/auth/login`:
+
+```json
 {
   "usernameOrEmail": "mike",
   "password": "test123"
 }
+```
 
+Copy the `"token"` value and use it in Swagger/Postman.
 
-In the response, copy the "token" value.
+---
 
-Use it when calling /api/tasks routes:
+## ✍️ Task Functionality Rules
 
-Authorization: Bearer <token>
+### 🔹 Basic users
+✔ Can create tasks  
+✔ Can view only their tasks  
+✔ Can update only their tasks  
 
-✍️ Task Functionality Rules
+### 🔹 Admins
+❌ Cannot create tasks  
+✔ Can view all tasks  
+✔ Can update any task  
 
-🔹 Basic users
-✔ Can create tasks
-✔ Can view only their tasks
-✔ Can update only their tasks
+---
 
-🔹 Admins
-❌ Cannot create tasks
-✔ Can view all tasks
-✔ Can update any task
+## 📌 Future Enhancements (Optional)
 
-📌 Future Enhancements (Optional)
+- JWT refresh tokens  
+- Delete task endpoint  
+- Jest/Mocha tests  
+- Docker support  
+- Deployment to cloud  
 
-JWT refresh tokens
+---
 
-Delete task endpoint
-
-Jest/Mocha tests
-
-Docker support
-
-Deployment to cloud (Render, Railway, etc.)
-
-👤 **Author**
-
-Bora Miletic
-Junior Software Engineer
+👤 **Author**  
+**Bora Miletic**  
+Junior Software Engineer  
