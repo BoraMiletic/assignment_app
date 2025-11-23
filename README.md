@@ -21,7 +21,7 @@ A simple REST API built with Node.js, Express, PostgreSQL, and JWT Authenticatio
 
 ### ✔ 1. Clone the project
 ```bash
-git clone <your-repo-url>
+git clone git@github.com:BoraMiletic/assignment_app.git
 cd bora_assignment_app
 ```
 
