@@ -1,24 +1,24 @@
-📘 Bora Assignment API
+📘 # Bora Assignment API
 
 A simple REST API built with Node.js, Express, PostgreSQL, and JWT Authentication, supporting user registration, login, and task management with role-based access.
 
-🚀 Features
+🚀 ## Features
 
-User registration with hashed passwords
+- User registration with hashed passwords
 
-JWT-based authentication
+- JWT-based authentication
 
-Login with email or username
+- Login with email or username
 
-Role-based authorization (basic and admin)
+- Role-based authorization (basic and admin)
 
-Basic users can create, view, and update only their own tasks
+- Basic users can create, view, and update only their own tasks
 
-Admins can view and update all tasks
+- Admins can view and update all tasks
 
-Swagger API documentation
+- Swagger API documentation
 
-⚙️ Setup Instructions
+⚙️ ## Setup Instructions
 ✔ 1. Clone the project
 git clone <your-repo-url>
 cd bora_assignment_app
@@ -76,7 +76,7 @@ npm start
 The API will be available at:
 👉 http://localhost:5000
 
-📄 API Documentation (Swagger)
+📄 ## API Documentation (Swagger)
 
 Once the application is running, open your browser and navigate to:
 
@@ -89,7 +89,7 @@ Enter it like this:
 
 Bearer <your_token>
 
-📡 API Routes Overview
+📡 ## API Routes Overview
 Method	Endpoint	Description	Auth Required
 POST	/api/auth/register	Register new user	❌ No
 POST	/api/auth/login	Login and get JWT token	❌ No
@@ -136,7 +136,7 @@ Docker support
 
 Deployment to cloud (Render, Railway, etc.)
 
-👤 Author
+👤 **Author**
 
 Bora Miletic
 Junior Software Engineer
